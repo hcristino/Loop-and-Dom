@@ -3,7 +3,7 @@ body {
     max-width: 800px;
     margin: 30px auto;
     padding: 0 20px;
-    background: #f7f7f7;
+    background: #eaa001;
 }
 
 h1 {
@@ -20,13 +20,13 @@ h1 {
 input, button {
     padding: 8px 12px;
     font-size: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #1e8865;
     border-radius: 6px;
 }
 
 button {
     background: #4a6cf7;
-    color: white;
+    color: rgb(119, 9, 58);
     border: none;
     cursor: pointer;
 }
@@ -55,13 +55,13 @@ button {
 .stats {
     margin-top: 20px;
     padding: 12px;
-    background: white;
+    background: rgb(74, 6, 6);
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid #49aec4;
 }
 
 .hint {
     margin-top: 10px;
     font-size: 14px;
-    color: #666;
+    color: #f2ea09;
 }

@@ -7,7 +7,7 @@ const grid = document.getElementById("grid");
 const stats = document.getElementById("stats");
 
 function randomColor() {
-    const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c'];
+    const colors = ['#e74c3c', '#edab99', '#af159d', '#ff7cb3', '#340348', '#1a1dbc'];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -66,8 +66,8 @@ function updateStats() {
     // LOOP through all squares to check color
     for (const square of squares) {
         const bg = square.style.backgroundColor;
-        // rgb(231, 76, 60) is #e74c3c - fixed the extra quote here
-        if (bg === 'rgb(231, 76, 60)') { 
+        // rgb(233, 189, 229) is #3c53e7 - 
+        if (bg === 'rgb(151, 231, 60)') { 
             redCount++;
         }
     }
