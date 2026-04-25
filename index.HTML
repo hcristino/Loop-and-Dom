@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Loops + DOM Grid Project</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #f7f7f7;
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input, button {
+            padding: 8px 12px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background: #4a6cf7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #3a5ce5;
+            }
+
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 8px;
+        }
+
+        .square {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+            .square:hover {
+                transform: scale(1.05);
+            }
+
+        .stats {
+            margin-top: 20px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1> Loop + DOM Color Grid</h1>
+
+    <div class="controls">
+        <input type="number" id="gridSize" placeholder="How many squares?" min="1" max="200" value="25">
+        <button id="generateBtn"> Generate Grid</button>
+        <button id="randomizeBtn"> Randomize All Colors</button>
+        <button id="clearBtn"> Clear Grid</button>
+    </div>
+
+    <div id="grid"> </div>
+    <div class="stats" id="stats"> Squares: 0 | Red squares: 0</div>
+
+    <script>
+// 1. DOM SELECTION: Grab elements we need to work with
+const gridSizeInput = document.getElementById('gridSize');
+const generateBtn = document.getElementById('generateBtn');
+const randomizeBtn = document.getElementById('randomizeBtn');
+const clearBtn = document.getElementById('clearBtn');
+const grid = document.getElementById('grid');
+const stats = document.getElementById('stats');
+
+// Helper: random color generator
+function randomColor() {
+    const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c'];
+    return colors[Math.floor(Math.random() * colors.length)];
+    // fixed: was math
+}
+
+// 2. LOOP #1: Use a FOR loop to create the grid
+function generateGrid() {
+    const count = parseInt(gridSizeInput.value);
+    if (isNaN(count) || count < 1) return;
+    // DOM MANIPULATION: clear existing grid grid.innerHTML = '';
+    // LOOP through and create each square for (let i = 0; i < count; i++)
+
+{
+    // DOM MANIPULATION: create element const square = document.createElement('div');
+    square .classList.add('square');
+    square .style.backgroundColor = randomColor();
+    // Store index as data attribute for later square.dataset.index = i;
+    // DOM MANIPULATION: Add event listener to each square square.addEventListener('click', () => {
+          square.style.backgroundColor = randomColor();
+          updateStats();
+        });
+    // DOM manipulation: Add to page grid.appendChild(square);
+}
+
+updateStats();
+}
+
+// 3. LOOP #2: Use forEach to randomize all existing squares
+function randomizeAll() {
+    // DOM SELECTION: Get all squares currently in the DOM const squares = document.querySelectorAll('.square');
+    // LOOP through NodeList with forEach squares.forEach(square => {
+        // DOM MANIPULATION: change style property
+        square.style.backgroundColor = randomColor();
+      });
+    updateStats();
+}
+
+// 4. DOM MANIPULATION: Clear everything
+function clearGrid() {
+    grid .innerHTML = '';
+    // Removes all child nodes at once updateStats();
+}
+
+// 5. LOOP #3: Use a for...of loop to count red squares
+function updateStats() {
+    const squares = document.querySelectorAll('.square');
+    let redCount = 0;
+    // LOOP through all squares to check color for (const square of squares)
+
+{
+    const bg = square.style.backgroundColor;
+    // rgb(231, 76, 60) is #e74c3c if (bg === 'rgb(231, 76, 60)')
+
+{
+    redCount ++;
+}
+
+}
+
+// DOM MANIPULATION: Update text content
+stats.textContent = `Squares: $ {
+    squares .length
+}
+
+| Red squares: $ {
+    redCount
+}
+
+`;
+}
+
+// 6. DOM MANIPULATION: wire up buttons with event listeners
+generateBtn.addEventListener('click', generateGrid);
+randomizeBtn.addEventListener('click', randomizeAll);
+clearBtn.addEventListener('click', clearGrid);
+
+// Generate initial grid on load
+generateGrid();
+    </script>
+</body>
+</html>
